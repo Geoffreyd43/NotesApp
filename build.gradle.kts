@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
-    id("org.jetbrains.kotlin.kapt") version "2.1.20-Beta2"
+    alias(libs.plugins.kapt) apply false
     alias(libs.plugins.compose.compiler) apply false
-    id("com.google.dagger.hilt.android") version "2.51.1" apply false
+    alias(libs.plugins.hilt.android) apply false
 }
