@@ -1,6 +1,11 @@
 package com.example.notesapp.repository
 
 import com.example.notesapp.data.Note
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 class MockNotesRepository : NotesRepository {
     override fun getNotes(): List<Note> {
@@ -18,5 +23,16 @@ class MockNotesRepository : NotesRepository {
                 content = "Silly human, I would never keep my passwords here ;)"
             )
         )
+    }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object NotesRepositoryModule {
+
+    @Provides
+    @Singleton
+    fun provideNotesRepository(): NotesRepository {
+        return MockNotesRepository()
     }
 }
