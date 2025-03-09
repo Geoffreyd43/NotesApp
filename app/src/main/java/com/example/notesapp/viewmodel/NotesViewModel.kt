@@ -13,4 +13,8 @@ class NotesViewModel @Inject constructor(
     fun getNotes(): List<Note> {
         return notesRepository.getNotes()
     }
+
+    fun getNote(id: Int): Note {
+        return notesRepository.getNote(id)
+    }
 }

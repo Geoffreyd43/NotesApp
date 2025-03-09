@@ -4,4 +4,5 @@ import com.example.notesapp.data.Note
 
 interface NotesRepository {
     fun getNotes(): List<Note>
+    fun getNote(id: Int): Note
 }
