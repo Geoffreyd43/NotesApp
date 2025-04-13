@@ -1,0 +1,25 @@
+package com.example.notesapp.data
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+
+@Dao
+interface NoteDao {
+    @Query("SELECT * FROM note")
+    fun selectAll(): List<Note>
+
+    @Query("SELECT * FROM note WHERE id IN (:noteIds)")
+    fun loadAllByIds(noteIds: IntArray): List<Note>
+
+    @Insert
+    fun insert(note: Note)
+
+    @Update
+    fun update(note: Note)
+
+    @Delete
+    fun delete(note: Note)
+}

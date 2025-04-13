@@ -1,5 +1,12 @@
 package com.example.notesapp.data
 
-class Note(val id: Int, val title: String = "", val content: String = "") {
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-}
+@Entity
+data class Note(
+    @PrimaryKey val id: Int,
+    @ColumnInfo val title: String = "",
+    @ColumnInfo val content: String = ""
+)
