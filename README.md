@@ -11,3 +11,6 @@ This is my first android app, a personalized note taking app.
 * Coroutines + Flows
 * Authentication?
 * Unit testing with minimal mocking
+
+# App Architecture
+![image](diagrams/NotesAppArchitecture.png)
