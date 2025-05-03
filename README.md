@@ -10,3 +10,4 @@ This is my first android app, a personalized note taking app.
 * Handle different screen sizes (tablet vs phone)
 * Coroutines + Flows
 * Authentication?
+* Unit testing with minimal mocking
