@@ -1,11 +1,8 @@
 package com.example.notesapp.repository
 
 import com.example.notesapp.data.Note
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class MockNotesRepository : NotesRepository {
 
@@ -25,32 +22,43 @@ class MockNotesRepository : NotesRepository {
         content = "Silly human, I would never keep my passwords here ;)"
     )
 
-    override fun getNotes(): List<Note> {
-        return listOf(
-            todo,
-            shoppingList,
-            passwords
-        )
+    override suspend fun getNoteList(): Flow<Result<List<Note>>> {
+        return flow {
+            listOf(
+                todo,
+                shoppingList,
+                passwords
+            )
+        }
     }
 
-    override fun getNote(id: Int): Note {
-        return when (id) {
-            1 -> todo
-            2 -> shoppingList
-            3 -> passwords
-            else -> Note(id = 0)
+    override suspend fun getNoteDetail(id: Int): Flow<Result<Note>> {
+        return flow {
+            when (id) {
+                1 -> todo
+                2 -> shoppingList
+                3 -> passwords
+                else -> Note(id = 0)
+            }
         }
 
     }
-}
 
-@Module
-@InstallIn(SingletonComponent::class)
-object NotesRepositoryModule {
+    override suspend fun delete(vararg notes: Note): Flow<Result<Boolean>> {
+        return flow {
+            Result.success(true)
+        }
+    }
 
-    @Provides
-    @Singleton
-    fun provideNotesRepository(): NotesRepository {
-        return MockNotesRepository()
+    override suspend fun update(vararg notes: Note): Flow<Result<Boolean>> {
+        return flow {
+            Result.success(true)
+        }
+    }
+
+    override suspend fun insert(note: Note): Flow<Result<Boolean>> {
+        return flow {
+            Result.success(true)
+        }
     }
 }
